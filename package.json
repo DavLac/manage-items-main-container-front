@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@bit/davlac.manage-items.items": "^1.0.0",
+    "@bit/davlac.manage-items.search": "^1.0.2",
     "@bit/davlac.manage-items.user": "^1.0.4",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
