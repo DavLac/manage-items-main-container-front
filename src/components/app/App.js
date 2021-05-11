@@ -1,25 +1,34 @@
 import './App.css';
-import React from 'react';
-import CustomTabs from "../elements/tabs/CustomTabs";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import User from "@bit/davlac.manage-items.user";
-import AddIcon from "@material-ui/icons/Add";
-import Items from "@bit/davlac.manage-items.items";
-import SearchIcon from "@material-ui/icons/Search";
-import Search from "@bit/davlac.manage-items.search";
+import React, {useState} from 'react';
+import Content from "../content/Content";
 import {Header} from "../header/Header";
-
-const tabData = [
-    {title: "Users", icon: <AccountCircleIcon/>, content: <User/>},
-    {title: "Create item", icon: <AddIcon/>, content: <Items/>},
-    {title: "Search items", icon: <SearchIcon/>, content: <Search/>}
-]
+import {BrowserRouter} from 'react-router-dom';
+import {NavBar} from "../navbar/NavBar";
+import {ThemeProvider} from "styled-components";
+import {GlobalStyles} from "../../style/GlobalStyles";
+import {darkTheme, lightTheme, ThemeColors} from "../../style/Themes"
 
 export default function App() {
+    const [theme, setTheme] = useState(ThemeColors.DARK);
+
+    const toggleTheme = () => {
+        if (theme === ThemeColors.LIGHT) {
+            setTheme(ThemeColors.DARK);
+        } else {
+            setTheme(ThemeColors.LIGHT);
+        }
+    }
+
     return (
-        <React.Fragment>
-            <Header />
-            <CustomTabs tabs={tabData} />
-        </React.Fragment>
+        <ThemeProvider theme={theme === ThemeColors.LIGHT ? lightTheme : darkTheme}>
+            <>
+                <GlobalStyles/>
+                <BrowserRouter>
+                    <Header theme={theme} toggleTheme={toggleTheme}/>
+                    <NavBar/>
+                    <Content/>
+                </BrowserRouter>
+            </>
+        </ThemeProvider>
     );
 }
