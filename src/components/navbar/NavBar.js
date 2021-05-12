@@ -1,6 +1,5 @@
 import React from 'react';
 import {tabDatas} from "./TabDatas";
-import './NavBar.css';
 import {Tab} from "./tab/Tab";
 import {NavStyled, StyledNavLink} from "./NavBar.styled"
 
