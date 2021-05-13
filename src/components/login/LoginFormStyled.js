@@ -39,11 +39,6 @@ export const LoginButton = styled.button`
     }
 `;
 
-export const StyledLogoutLink = styled(Link)`
-    text-decoration: none;
-    color: inherit;
-`;
-
 export const LogoutButtonStyled = styled.button`
     position: absolute;
     left: 15px;

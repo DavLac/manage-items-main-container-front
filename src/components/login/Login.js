@@ -8,6 +8,7 @@ import {SnakeBarLevel} from "../elements/snackbar/SnakeBarLevel";
 import {CustomSnackBar} from "../elements/snackbar/CustomSnakeBar";
 import SnakeBarContext from "../context/SnakeBarContext";
 import {UserDetailsContext} from "../context/UserDetailsContext";
+import {useHistory} from 'react-router-dom';
 
 export default function Login(props) {
     const initialLoginState = localStorage.getItem(loginLocalStorageKey) === null
@@ -31,11 +32,14 @@ export default function Login(props) {
         }
     }
 
+    const history = useHistory();
+
     const logoutOnclickHandler = (event) => {
         event.preventDefault();
         localStorage.removeItem(loginLocalStorageKey);
         localStorage.removeItem(userLocalStorageKey);
         setLogin(loginConstants.NOT_LOGGED);
+        history.push('/');
     }
 
     // load user details if reload a page when user is logged in
