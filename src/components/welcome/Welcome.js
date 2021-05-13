@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {UserDetailsContext} from "../context/UserDetailsContext";
 
-export const Welcome = (props) => {
+export const Welcome = () => {
+    const ctxUser = useContext(UserDetailsContext);
+
     return (
         <h1>
-            Welcome #{props.username}# !
+            Welcome '{ctxUser.userDetails.name}' !
         </h1>
     );
 }

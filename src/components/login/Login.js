@@ -1,38 +1,59 @@
-import React, {useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import './Login.css';
 import {LoginForm} from "./LoginForm";
 import {LogoutButton} from "./LogoutButton";
-
-const loginLocalStorageKey = 'isLogged';
-
-const loginStatus = {
-    NOT_LOGGED: '0',
-    LOGGED: '1'
-}
+import {loginLocalStorageKey, loginConstants, userLocalStorageKey} from "./LoginConstants";
+import AuthContext from "../context/AuthContext";
+import {SnakeBarLevel} from "../elements/snackbar/SnakeBarLevel";
+import {CustomSnackBar} from "../elements/snackbar/CustomSnakeBar";
+import SnakeBarContext from "../context/SnakeBarContext";
+import {UserDetailsContext} from "../context/UserDetailsContext";
 
 export default function Login(props) {
     const initialLoginState = localStorage.getItem(loginLocalStorageKey) === null
-        ? loginStatus.NOT_LOGGED
+        ? loginConstants.NOT_LOGGED
         : localStorage.getItem(loginLocalStorageKey)
     const [isLogged, setLogin] = useState(initialLoginState);
+    const [displayLoggedIn, setDisplayLoggedIn] = useState(false);
+    const ctxSnakeBar = useContext(SnakeBarContext);
+    const ctxUser = useContext(UserDetailsContext);
 
-    const loginOnclickHandler = (event) => {
-        event.preventDefault();
-        localStorage.setItem(loginLocalStorageKey, loginStatus.LOGGED);
-        setLogin(loginStatus.LOGGED);
+    useEffect(() => {
+        setDisplayLoggedIn(true);
+    }, [isLogged])
+
+    const displayAuthenticatedSnakeBar = () => {
+        if (isLogged === loginConstants.LOGGED) {
+            return <CustomSnackBar level={SnakeBarLevel.SUCCESS}
+                                   message={'Authenticated'}
+                                   openSnakeBar={ctxSnakeBar.openSnakeBar}
+                                   handleClose={ctxSnakeBar.handleClose}/>
+        }
     }
 
     const logoutOnclickHandler = (event) => {
         event.preventDefault();
         localStorage.removeItem(loginLocalStorageKey);
-        setLogin(loginStatus.NOT_LOGGED);
+        localStorage.removeItem(userLocalStorageKey);
+        setLogin(loginConstants.NOT_LOGGED);
+    }
+
+    // load user details if reload a page when user is logged in
+    if(isLogged === loginConstants.LOGGED &&
+        ctxUser.userDetails.name === undefined) {
+        const userLocalStorage = localStorage.getItem(userLocalStorageKey);
+        ctxUser.setUserDetails(JSON.parse(userLocalStorage));
     }
 
     return (
-        <>
-            {isLogged === loginStatus.NOT_LOGGED && <LoginForm onClickHandler={loginOnclickHandler}/>}
-            {isLogged === loginStatus.LOGGED && <LogoutButton onClickHandler={logoutOnclickHandler}/>}
-            {isLogged === loginStatus.LOGGED && props.children}
-        </>
+        <AuthContext.Provider value={{
+            isLoggedIn: isLogged,
+            setIsLoggedIn: setLogin
+        }}>
+            {(isLogged === loginConstants.NOT_LOGGED) && <LoginForm/>}
+            {isLogged === loginConstants.LOGGED && <LogoutButton onClickHandler={logoutOnclickHandler}/>}
+            {isLogged === loginConstants.LOGGED && props.children}
+            {displayLoggedIn && displayAuthenticatedSnakeBar()}
+        </AuthContext.Provider>
     );
 }

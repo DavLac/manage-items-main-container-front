@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {ThemeProvider} from "styled-components";
 import {GlobalStyles} from "./GlobalStyles";
 import {darkTheme, lightTheme, ThemeColors} from "./Themes"
-import ToggleThemeColor from "../components/elements/ToggleThemeColor";
+import ToggleThemeColorButton from "../components/elements/themebutton/ToggleThemeColorButton";
 
 const themeLocalStorageKey = 'theme';
 
@@ -26,7 +26,7 @@ export const ThemesLayer = (props) => {
         <ThemeProvider theme={theme === ThemeColors.LIGHT ? lightTheme : darkTheme}>
             <>
                 <GlobalStyles/>
-                <ToggleThemeColor theme={theme} toggleTheme={toggleTheme}/>
+                <ToggleThemeColorButton theme={theme} toggleTheme={toggleTheme}/>
                 {props.children}
             </>
         </ThemeProvider>
