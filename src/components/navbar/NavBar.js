@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import {tabDatas} from "./TabDatas";
 import {Tab} from "./tab/Tab";
 import {NavStyled, StyledNavLink} from "./NavBar.styled"
-import {UserDetailsContext} from "../context/UserDetailsContext";
+import {UserDetailsContext} from "@bit/davlac.manage-items.userdetails";
 import {findLevelByName} from "../constants/user-constants";
 
 const generateTabs = (userRole) => {

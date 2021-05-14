@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {UserDetailsContext} from "../context/UserDetailsContext";
+import {UserDetailsContext} from "@bit/davlac.manage-items.userdetails";
 
 export const Welcome = () => {
     const ctxUser = useContext(UserDetailsContext);

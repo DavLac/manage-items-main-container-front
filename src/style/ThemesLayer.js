@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {ThemeProvider} from "styled-components";
 import {GlobalStyles} from "./GlobalStyles";
-import {darkTheme, lightTheme, ThemeColors} from "./Themes"
+import {darkTheme, lightTheme, ThemeColors} from "@bit/davlac.manage-items.style"
 import ToggleThemeColorButton from "../components/elements/themebutton/ToggleThemeColorButton";
 
 const themeLocalStorageKey = 'theme';

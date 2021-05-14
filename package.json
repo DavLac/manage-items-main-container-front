@@ -5,7 +5,10 @@
   "dependencies": {
     "@bit/davlac.manage-items.items": "^1.0.0",
     "@bit/davlac.manage-items.search": "^1.0.2",
-    "@bit/davlac.manage-items.user": "^1.0.4",
+    "@bit/davlac.manage-items.snakebar": "^1.0.0",
+    "@bit/davlac.manage-items.style": "^0.0.1",
+    "@bit/davlac.manage-items.user-component": "^0.0.3",
+    "@bit/davlac.manage-items.userdetails": "^1.0.0",
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.58",

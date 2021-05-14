@@ -4,10 +4,10 @@ import {LoginForm} from "./LoginForm";
 import {LogoutButton} from "./LogoutButton";
 import {loginLocalStorageKey, loginConstants, userLocalStorageKey} from "./LoginConstants";
 import AuthContext from "../context/AuthContext";
-import {SnakeBarLevel} from "../elements/snackbar/SnakeBarLevel";
-import {CustomSnackBar} from "../elements/snackbar/CustomSnakeBar";
-import SnakeBarContext from "../context/SnakeBarContext";
-import {UserDetailsContext} from "../context/UserDetailsContext";
+import {SnakeBarLevel} from "@bit/davlac.manage-items.snakebar";
+import {CustomSnackBar} from "@bit/davlac.manage-items.snakebar";
+import {SnakeBarContext} from "@bit/davlac.manage-items.snakebar";
+import {UserDetailsContext} from "@bit/davlac.manage-items.userdetails";
 import {useHistory} from 'react-router-dom';
 
 export default function Login(props) {

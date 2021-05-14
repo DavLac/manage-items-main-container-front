@@ -5,10 +5,10 @@ import {CircularProgress} from "@material-ui/core";
 import UserService from "../http/UserService";
 import AuthContext from "../context/AuthContext";
 import {loginConstants, loginLocalStorageKey, userLocalStorageKey} from "./LoginConstants";
-import {CustomSnackBar} from "../elements/snackbar/CustomSnakeBar";
-import {SnakeBarLevel} from "../elements/snackbar/SnakeBarLevel";
-import SnakeBarContext from "../context/SnakeBarContext";
-import {UserDetailsContext} from "../context/UserDetailsContext";
+import {CustomSnackBar} from "@bit/davlac.manage-items.snakebar";
+import {SnakeBarLevel} from "@bit/davlac.manage-items.snakebar";
+import {SnakeBarContext} from "@bit/davlac.manage-items.snakebar";
+import {UserDetailsContext} from "@bit/davlac.manage-items.userdetails";
 import {adminData} from "../constants/user-constants";
 
 const validInput = {
@@ -113,10 +113,10 @@ export const LoginForm = () => {
                 } else {
                     setErrorMessage(error.message);
                 }
-                setIsLoading(false);
                 setIsError(true);
                 ctxSnakeBar.setOpenSnakeBar(true);
             })
+            .finally(() => setIsLoading(false))
     }
 
     const handleSuccessLoginResponse = (userData) => {
